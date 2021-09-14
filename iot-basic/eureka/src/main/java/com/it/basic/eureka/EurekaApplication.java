@@ -1,6 +1,6 @@
 package com.it.basic.eureka;
 
-import com.it.core.utils.Pretty;
+import com.it.core.Pretty;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,9 +20,7 @@ public class EurekaApplication {
 
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
-        ConfigurableApplicationContext context = SpringApplication.run(EurekaApplication.class, args);
-        ConfigurableEnvironment env = context.getEnvironment();
-        Pretty.welcome(env);
-        log.info("服务启动耗时：{}", (System.currentTimeMillis() - startTime) / 1000 + "秒");
+        Pretty.welcome(SpringApplication.run(EurekaApplication.class, args));
+        log.info("注册中心服务启动耗时：{}", (System.currentTimeMillis() - startTime) / 1000 + "秒");
     }
 }

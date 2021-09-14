@@ -4,6 +4,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <modules>
+        <module>iot-job</module>
+        <module>iot-uaa</module>
+    </modules>
+
     <parent>
         <artifactId>iot</artifactId>
         <groupId>com.it</groupId>
@@ -13,5 +18,20 @@
     <artifactId>iot-server</artifactId>
     <packaging>pom</packaging>
     <version>1.0</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.it</groupId>
+            <artifactId>iot-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

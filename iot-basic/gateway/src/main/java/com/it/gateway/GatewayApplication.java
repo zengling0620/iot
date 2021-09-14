@@ -1,5 +1,6 @@
 package com.it.gateway;
 
+import com.it.core.Pretty;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,7 +17,9 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 public class GatewayApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GatewayApplication.class, args);
+        long startTime = System.currentTimeMillis();
+        Pretty.welcome(SpringApplication.run(GatewayApplication.class, args));
+        log.info("网关服务启动耗时：{}", (System.currentTimeMillis() - startTime) / 1000 + "秒");
     }
 
 }

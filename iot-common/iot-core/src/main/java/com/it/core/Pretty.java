@@ -1,8 +1,9 @@
-package com.it.core.utils;
+package com.it.core;
 
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.core.env.Environment;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.core.env.ConfigurableEnvironment;
 
 import java.net.InetAddress;
 
@@ -15,7 +16,8 @@ import java.net.InetAddress;
 public class Pretty {
 
     @SneakyThrows
-    public static void welcome(final Environment env) {
+    public static void welcome(final ConfigurableApplicationContext context) {
+        ConfigurableEnvironment env = context.getEnvironment();
         String protocol = env.getProperty("server.ssl.key-store") == null ? "http" : "https";
         final String crlf = "\n";
         String indent = "\t";
