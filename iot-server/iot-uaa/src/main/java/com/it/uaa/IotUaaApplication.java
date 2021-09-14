@@ -1,15 +1,20 @@
 package com.it.uaa;
 
+import com.it.core.Pretty;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 
 @Slf4j
+@EnableEurekaClient
 @SpringBootApplication
 public class IotUaaApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(IotUaaApplication.class, args);
+        long startTime = System.currentTimeMillis();
+        Pretty.welcome(SpringApplication.run(IotUaaApplication.class, args));
+        log.info("定时任务服务启动耗时：{}", (System.currentTimeMillis() - startTime) / 1000 + "秒");
     }
 
 }

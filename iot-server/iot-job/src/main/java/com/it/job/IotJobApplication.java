@@ -14,7 +14,7 @@ public class IotJobApplication {
     public static void main(String[] args) {
         long startTime = System.currentTimeMillis();
         Pretty.welcome(SpringApplication.run(IotJobApplication.class, args));
-//        log.info("定时任务服务启动耗时：{}", (System.currentTimeMillis() - startTime) / 1000 + "秒");
+        log.info("定时任务服务启动耗时：{}", (System.currentTimeMillis() - startTime) / 1000 + "秒");
     }
 
 }

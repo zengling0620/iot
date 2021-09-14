@@ -12,7 +12,5 @@
     <artifactId>iot-uaa</artifactId>
     <version>1.0</version>
 
-    <dependencies>
-    </dependencies>
 
 </project>
