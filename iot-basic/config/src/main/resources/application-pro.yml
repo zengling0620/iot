@@ -1,1 +1,12 @@
+server:
+  port: 2020
 
+#eureka连接信息
+eureka:
+  instance:
+    hostname: summer.com
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: https://zengling:zengling@${eureka.instance.hostname}:10100/eureka/

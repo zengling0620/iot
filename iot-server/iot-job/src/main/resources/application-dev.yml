@@ -1,14 +1,6 @@
 server:
-  port: 10100
+  port: 8700
 
-spring:
-  #eureka权限配置
-  security:
-    basic:
-      enabled: true
-    user:
-      name: zengling
-      password: zengling
 
 #eureka基本信息配置
 eureka:

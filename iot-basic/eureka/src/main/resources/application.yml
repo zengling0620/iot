@@ -1,6 +1,6 @@
 spring:
   application:
-    name: eureka
+    name: '@artifactId@'
   profiles:
-    active: dev
+    active: '@profiles.active@'
 
