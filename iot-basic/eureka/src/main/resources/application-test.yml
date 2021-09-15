@@ -21,7 +21,7 @@ eureka:
     #因为自己是为注册中心，不需要检索服务
     fetch-registry: false
     service-url:
-      defaultZone: https://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@${eureka.instance.hostname}:${server.port}/eureka/
       #剔除失效服务间隔
       eviction-interval-timer-in-ms: 2000
   server:

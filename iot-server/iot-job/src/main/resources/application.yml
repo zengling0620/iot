@@ -1,1 +1,12 @@
-
+spring:
+  application:
+    name: @artifactId@
+  profiles:
+    active: @profiles.active@
+  #切面启用
+  aop:
+    auto: true
+    proxy-target-class: true
+server:
+  servlet:
+    context-path: /jobs
