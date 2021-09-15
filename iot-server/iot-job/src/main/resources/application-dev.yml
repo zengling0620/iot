@@ -1,7 +1,6 @@
 server:
   port: 8700
 
-
 #eureka基本信息配置
 eureka:
   instance:

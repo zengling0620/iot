@@ -1,6 +1,6 @@
 spring:
   application:
-    name: '@artifactId@'
+    name: @artifactId@
   profiles:
-    active: '@profiles.active@'
+    active: @profiles.active@
 

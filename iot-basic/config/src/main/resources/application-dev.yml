@@ -9,4 +9,4 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: https://zengling:zengling@${eureka.instance.hostname}:10100/eureka/
+      defaultZone: https://zengling:zengling@${eureka.instance.hostname}:10001/eureka/

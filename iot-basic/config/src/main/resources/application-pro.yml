@@ -1,5 +1,5 @@
 server:
-  port: 2020
+  port: 2022
 
 #eureka连接信息
 eureka:
@@ -9,4 +9,4 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: https://zengling:zengling@${eureka.instance.hostname}:10100/eureka/
+      defaultZone: https://zengling:zengling@${eureka.instance.hostname}:10003/eureka/

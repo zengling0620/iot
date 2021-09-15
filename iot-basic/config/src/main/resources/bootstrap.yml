@@ -5,7 +5,7 @@ spring:
       server:
         git:
           uri: https://gitee.com/zengl123/spring-cloud-config-git
-          search-paths: /**
+          search-paths: /iot/**
           force-pull: true
           username: zengl123
           password: zeng@zeng123

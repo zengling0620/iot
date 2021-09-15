@@ -18,7 +18,6 @@
 
     <artifactId>iot-basic</artifactId>
     <packaging>pom</packaging>
-    <version>1.0</version>
 
     <dependencies>
         <dependency>
@@ -30,5 +29,4 @@
             <artifactId>snakeyaml</artifactId>
         </dependency>
     </dependencies>
-
 </project>
