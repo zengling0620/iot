@@ -1,5 +1,5 @@
 server:
-  port: 7002
+  port: 7003
 
 spring:
   cloud:
@@ -10,4 +10,4 @@ spring:
       profile: @profiles.active@
       label: master
       #本微服务启动后先去找3344号服务，通过SpringCloudConfig获取GitHub的服务地址
-      uri: http://summer.com:2021
+      uri: http://summer.com:2022

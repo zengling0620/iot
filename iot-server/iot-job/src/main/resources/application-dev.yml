@@ -2,11 +2,13 @@ server:
   port: 7001
 
 #eureka连接信息
+
 eureka:
   instance:
     hostname: summer.com
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    enabled: false
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
       defaultZone: https://zengling:zengling@${eureka.instance.hostname}:10001/eureka/

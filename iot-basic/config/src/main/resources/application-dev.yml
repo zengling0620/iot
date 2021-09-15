@@ -1,5 +1,5 @@
 server:
-  port: 2020
+  port: 2021
 
 #eureka连接信息
 eureka:
