@@ -1,0 +1,14 @@
+server:
+  port: 7101
+
+#eureka连接信息
+
+eureka:
+  instance:
+    hostname: summer.com
+  client:
+    enabled: false
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: https://zengling:zengling@${eureka.instance.hostname}:10001/eureka/

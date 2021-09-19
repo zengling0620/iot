@@ -7,6 +7,7 @@
     <modules>
         <module>iot-job</module>
         <module>iot-uaa</module>
+        <module>iot-websocket</module>
     </modules>
 
     <parent>
