@@ -9,6 +9,8 @@ public class MessageRequest implements Serializable {
 
     private Long unionId;
 
+    private String unionType;
+
     private Integer current = 1;
 
     private Integer size = 10;

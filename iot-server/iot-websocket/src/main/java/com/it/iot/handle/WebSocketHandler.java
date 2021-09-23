@@ -2,7 +2,8 @@ package com.it.iot.handle;
 
 import com.alibaba.fastjson.JSON;
 import com.it.iot.model.dto.MessageRequest;
-import com.it.iot.server.PhmServer;
+import com.it.iot.server.IWebsocketService;
+import com.it.iot.server.impl.PhmServer;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
@@ -46,6 +47,8 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketF
         try {
             //接受客户端发送的消息
             MessageRequest messageRequest = JSON.parseObject(msg.text(), MessageRequest.class);
+            String unionType = messageRequest.getUnionType();
+            IWebsocketService websocketService=null;
             //每个channel都有id，asLongText是全局channel唯一id
             String key = ctx.channel().id().asLongText();
             //存储channel的id和用户的主键
@@ -53,7 +56,7 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketF
             log.info("接受客户端的消息......{}-参数[{}]", ctx.channel().remoteAddress(), messageRequest.getUnionId());
             if (!channelMap.containsKey(key)) {
                 //使用channel中的任务队列，做周期循环推送客户端消息，解决问题二和问题五
-                Future<?> future = ctx.channel().eventLoop().scheduleAtFixedRate(new PhmServer(), 0, 10, TimeUnit.SECONDS);
+                Future<?> future = ctx.channel().eventLoop().scheduleAtFixedRate(websocketService, 0, 10, TimeUnit.SECONDS);
                 //存储客户端和服务的通信的Chanel
                 channelMap.put(key, ctx.channel());
                 //存储每个channel中的future，保证每个channel中有一个定时任务在执行
