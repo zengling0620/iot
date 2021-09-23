@@ -14,6 +14,25 @@
     <name>iot-websocket</name>
     <description>websocket通信服务</description>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.it</groupId>
+            <artifactId>iot-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+    </dependencies>
+
     <build>
         <plugins>
             <plugin>

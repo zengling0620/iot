@@ -12,3 +12,7 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: https://zengling:zengling@${eureka.instance.hostname}:10001/eureka/
+
+websocket:
+  port: 7000 #端口
+  url: /msg #访问url

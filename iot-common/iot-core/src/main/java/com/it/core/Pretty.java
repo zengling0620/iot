@@ -24,14 +24,16 @@ public class Pretty {
         final String lineSeparator = crlf + "--------------------------------------------------------" + crlf;
         String appName = env.getProperty("spring.application.name");
         String port = env.getProperty("local.server.port");
+        String contextPath = env.getProperty("server.servlet.context-path");
         String[] activeProfiles = env.getActiveProfiles();
         String hostAddress = InetAddress.getLocalHost().getHostAddress();
         StringBuilder builder = new StringBuilder();
         builder.append(indent).append("Application {} is running! Access URLs:").append(crlf);
         builder.append(indent).append("Local:").append(indent).append(indent).append("{}://localhost:{}").append(crlf);
         builder.append(indent).append("External:").append(indent).append("{}://{}:{}").append(crlf);
+        builder.append(indent).append("Context:").append(indent).append("{}").append(crlf);
         builder.append(indent).append("Profile(s):").append(indent).append("{}");
         builder.append(lineSeparator);
-        log.info(builder.toString(), appName, protocol, port, protocol, hostAddress, port, activeProfiles);
+        log.info(builder.toString(), appName, protocol, port, protocol, hostAddress, port, contextPath, activeProfiles);
     }
 }
