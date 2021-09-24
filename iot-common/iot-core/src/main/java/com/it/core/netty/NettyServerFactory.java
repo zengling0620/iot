@@ -1,5 +1,6 @@
-package com.it.iot.context;
+package com.it.core.netty;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
@@ -7,7 +8,7 @@ import org.springframework.stereotype.Component;
  * @menu todo
  * @date 2021/4/25 上午1:58
  */
+@Slf4j
 @Component
-public class WebContext {
-
+public class NettyServerFactory {
 }

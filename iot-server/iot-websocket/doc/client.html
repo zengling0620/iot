@@ -2,7 +2,7 @@
 <meta charset="utf-8" />
 <title>WebSocket Test</title>
 <script language="javascript"type="text/javascript">
-    var wsUri ="ws://127.0.0.1:7000/msg";
+    var wsUri ="ws://127.0.0.1:7000/websocket";
     var output;
 
     function init() {
@@ -27,7 +27,7 @@
     }
 
     function onOpen(evt) {
-        var message =	"{\"unionId\":\"3\",\"protocolType\":\"private\",\"dataCollection\":\"all\",\"from\":\"webclient\",\"value\":[{\"city_code\":266000,\"lineNum\":\"1\",\"trainType\":\"maglev01\",\"trainNos\":[\"1\"],\"columns\":[\"sys_tx_mref3_5\",\"trainStates\",\"sys_hs0-1_1\",\"sys_bst0_main-1_1\"]}]}";
+        var message =	"{\"unionId\":\"2\",\"unionType\":\"phm\",\"period\":\"5000\",\"data\":{\"city_code\":266000,\"lineNum\":\"1\",\"trainType\":\"maglev01\",\"trainNos\":[\"1\"],\"columns\":[\"sys_tx_mref3_5\",\"trainStates\",\"sys_hs0-1_1\",\"sys_bst0_main-1_1\"]}}";
         writeToScreen("CONNECTED");
         doSend(message);
     }

@@ -15,4 +15,4 @@ eureka:
 
 websocket:
   port: 7000 #端口
-  url: /msg #访问url
+  url: /websocket #访问url

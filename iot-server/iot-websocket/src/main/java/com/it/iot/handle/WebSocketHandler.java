@@ -1,18 +1,21 @@
 package com.it.iot.handle;
 
 import com.alibaba.fastjson.JSON;
+import com.it.iot.context.SocketContext;
 import com.it.iot.model.dto.MessageRequest;
-import com.it.iot.server.IWebsocketService;
+import com.it.iot.server.ISocketService;
 import com.it.iot.server.impl.PhmServer;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelHandler;
-import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.SimpleChannelInboundHandler;
+import io.netty.channel.*;
+import io.netty.channel.group.ChannelGroup;
+import io.netty.channel.group.DefaultChannelGroup;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
 import io.netty.util.concurrent.Future;
+import io.netty.util.concurrent.GlobalEventExecutor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
+import java.net.SocketAddress;
 import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.Optional;
@@ -36,6 +39,14 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketF
     //存储channel的id和用户主键的映射，客户端保证用户主键传入的是唯一值，解决问题四，如果是集群中需要换成redis的hash数据类型存储即可
     private static final Map<String, Long> clientMap = new ConcurrentHashMap<>();
 
+    //所有正在连接的channel都会存在这里面，所以也可以间接代表在线的客户端
+    public static ChannelGroup channelGroup = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
+    //在线人数
+    public static int online;
+
+    @Resource
+    private SocketContext context;
+
     /**
      * 客户端发送给服务端的消息
      *
@@ -46,17 +57,19 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketF
     protected void channelRead0(ChannelHandlerContext ctx, TextWebSocketFrame msg) {
         try {
             //接受客户端发送的消息
-            MessageRequest messageRequest = JSON.parseObject(msg.text(), MessageRequest.class);
-            String unionType = messageRequest.getUnionType();
-            IWebsocketService websocketService=null;
+            MessageRequest<?> request = JSON.parseObject(msg.text(), MessageRequest.class);
+            Long unionId = request.getUnionId();
+            //请求连接类型
+            String unionType = request.getUnionType();
+            ISocketService bean = context.getBean(unionType, ctx, request);
             //每个channel都有id，asLongText是全局channel唯一id
             String key = ctx.channel().id().asLongText();
             //存储channel的id和用户的主键
-            clientMap.put(key, messageRequest.getUnionId());
-            log.info("接受客户端的消息......{}-参数[{}]", ctx.channel().remoteAddress(), messageRequest.getUnionId());
+            clientMap.put(key, unionId);
+            log.info("接受客户端的消息......{}-参数[{}]", ctx.channel().remoteAddress(), unionId);
             if (!channelMap.containsKey(key)) {
                 //使用channel中的任务队列，做周期循环推送客户端消息，解决问题二和问题五
-                Future<?> future = ctx.channel().eventLoop().scheduleAtFixedRate(websocketService, 0, 10, TimeUnit.SECONDS);
+                Future<?> future = ctx.channel().eventLoop().scheduleAtFixedRate(bean, 0, request.getPeriod(), TimeUnit.MILLISECONDS);
                 //存储客户端和服务的通信的Chanel
                 channelMap.put(key, ctx.channel());
                 //存储每个channel中的future，保证每个channel中有一个定时任务在执行
@@ -77,7 +90,10 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketF
      */
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) {
-        log.info("一个客户端连接......" + ctx.channel().remoteAddress() + Thread.currentThread().getName());
+        channelGroup.add(ctx.channel());
+        online = channelGroup.size();
+        log.info("加入一个客户端连接......[{}] ThreadName [{}]", ctx.channel().remoteAddress(), Thread.currentThread().getName());
+        log.info("当前连接数 {}", online);
     }
 
     /**
@@ -88,7 +104,10 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketF
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) {
         closeOrException(ctx);
-        log.info("一个客户端移除......" + ctx.channel().remoteAddress());
+        channelGroup.remove(ctx.channel());
+        online = channelGroup.size();
+        log.info("移除一个客户端连接......[{}] ThreadName [{}]", ctx.channel().remoteAddress(), Thread.currentThread().getName());
+        log.info("当前连接数 {}", online);
     }
 
     /**

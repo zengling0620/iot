@@ -5,5 +5,6 @@ package com.it.iot.server;
  * @menu todo
  * @date 2021/4/25 上午1:58
  */
-public interface IWebsocketService extends Runnable{
+public interface ISocketService extends Runnable {
+    String getType();
 }

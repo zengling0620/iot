@@ -5,13 +5,9 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class MessageRequest implements Serializable {
-
+public class MessageRequest<R> implements Serializable {
     private Long unionId;
-
     private String unionType;
-
-    private Integer current = 1;
-
-    private Integer size = 10;
+    private Long period = 2000L;
+    private R data;
 }
