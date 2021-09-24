@@ -90,9 +90,9 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketF
      */
     @Override
     public void handlerAdded(ChannelHandlerContext ctx) {
+        log.info("加入一个客户端连接......[{}] ThreadName [{}]", ctx.channel().remoteAddress(), Thread.currentThread().getName());
         channelGroup.add(ctx.channel());
         online = channelGroup.size();
-        log.info("加入一个客户端连接......[{}] ThreadName [{}]", ctx.channel().remoteAddress(), Thread.currentThread().getName());
         log.info("当前连接数 {}", online);
     }
 
@@ -104,9 +104,9 @@ public class WebSocketHandler extends SimpleChannelInboundHandler<TextWebSocketF
     @Override
     public void handlerRemoved(ChannelHandlerContext ctx) {
         closeOrException(ctx);
+        log.info("移除一个客户端连接......[{}] ThreadName [{}]", ctx.channel().remoteAddress(), Thread.currentThread().getName());
         channelGroup.remove(ctx.channel());
         online = channelGroup.size();
-        log.info("移除一个客户端连接......[{}] ThreadName [{}]", ctx.channel().remoteAddress(), Thread.currentThread().getName());
         log.info("当前连接数 {}", online);
     }
 
