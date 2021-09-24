@@ -11,7 +11,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public enum ClientEnum {
-    WEB(1, "web", "客户端数据交互"),
+    WEB(1, "web", "客户端基础数据交互"),
     PHM(2, "phm", "客户端phm数据交互"),
     ;
 

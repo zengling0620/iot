@@ -37,7 +37,7 @@ public class SocketContext {
             MessageRequest<PhmRequestDTO> phm = (MessageRequest<PhmRequestDTO>) message;
             socketService = new PhmServer(context, phm);
         } else {
-            throw new RuntimeException();
+            throw new RuntimeException("");
         }
         return socketService;
     }
