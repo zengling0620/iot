@@ -1,5 +1,6 @@
 package com.it;
 
+import cn.hutool.db.DbUtil;
 import cn.hutool.db.Entity;
 import cn.hutool.db.handler.EntityListHandler;
 import cn.hutool.db.sql.SqlExecutor;
@@ -35,5 +36,6 @@ public class DbTest {
         Connection connection = create();
         List<Entity> entityList = SqlExecutor.query(connection, "select * from t_user where user_code = ?", new EntityListHandler(), "1");
         System.out.println("entityList = " + entityList);
+        DbUtil.close(connection);
     }
 }
