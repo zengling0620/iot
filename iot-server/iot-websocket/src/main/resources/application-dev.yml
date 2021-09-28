@@ -16,3 +16,6 @@ eureka:
 websocket:
   port: 7000 #端口
   url: /websocket #访问url
+ws:
+  pis:
+    enable: true

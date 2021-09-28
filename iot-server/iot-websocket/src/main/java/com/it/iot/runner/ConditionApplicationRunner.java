@@ -3,29 +3,26 @@ package com.it.iot.runner;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 /**
  * @author ZL
- * @menu 项目启动后 初始化配置
+ * @menu todo
  * @date 2021/4/25 上午1:58
  */
 @Slf4j
 @Component
-@Order(1)
-class InitApplicationRunner implements ApplicationRunner {
+@ConditionalOnProperty(prefix = "ws.pis",value = "enable",havingValue = "true")
+public class ConditionApplicationRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) {
         try {
-            log.info("InitApplicationRunner start......");
-
-            log.info("InitApplicationRunner end......");
+            log.info("ConditionApplicationRunner start......");
+            log.info("ConditionApplicationRunner end......");
         } catch (Exception e) {
-            log.error("初始化配置异常:", e);
+            log.error("按需加载配置异常:", e);
         }
     }
 }
