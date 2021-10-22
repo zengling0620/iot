@@ -9,9 +9,8 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>iot-websocket</artifactId>
+    <artifactId>iot-server-websocket</artifactId>
     <version>1.0</version>
-    <name>iot-websocket</name>
     <description>websocket通信服务</description>
 
     <dependencies>
