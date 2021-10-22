@@ -4,6 +4,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <modules>
+        <module>iot-api-common</module>
+    </modules>
+
     <parent>
         <artifactId>iot</artifactId>
         <groupId>com.it</groupId>
@@ -14,5 +18,11 @@
     <packaging>pom</packaging>
     <version>1.0</version>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.it</groupId>
+            <artifactId>iot-core</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

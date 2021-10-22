@@ -23,10 +23,10 @@ public class WebsocketApplication {
     public void start() {
         try {
             log.info("{}:websocket启动中......", Thread.currentThread().getName());
-            //websocketInitialization.init();
-            log.info("{}:websocket启动成功！！！", Thread.currentThread().getName());
+            websocketInitialization.init();
+            log.info("{}:websocket启动成功!!!!!!", Thread.currentThread().getName());
         } catch (Exception e) {
-            log.error("websocket发生错误 {}", e.getMessage());
+            log.error("websocket发生错误: {}", e.getMessage());
         }
     }
 }

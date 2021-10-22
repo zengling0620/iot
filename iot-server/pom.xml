@@ -5,9 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <modules>
-        <module>iot-job</module>
-        <module>iot-uaa</module>
-        <module>iot-websocket</module>
+        <module>iot-server-job</module>
+        <module>iot-server-uaa</module>
+        <module>iot-server-common</module>
+        <module>iot-server-generator</module>
+        <module>iot-server-websocket</module>
     </modules>
 
     <parent>
@@ -28,10 +30,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.it</groupId>
-            <artifactId>iot-core</artifactId>
         </dependency>
         <dependency>
             <groupId>org.yaml</groupId>

@@ -1,13 +1,13 @@
 package com.it;
 
-import cn.hutool.core.bean.OptionalBean;
 import cn.hutool.core.date.LocalDateTimeUtil;
 import cn.hutool.core.lang.Console;
+import cn.hutool.core.map.MapUtil;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.Date;
-import java.util.Optional;
+import java.util.Map;
 
 /**
  * @author ZL
@@ -24,4 +24,13 @@ public class HutoolTest {
         Console.print(l);
     }
     /***********************************************OptinalBean*****************************************/
+
+    /***********************************************MapUtil*****************************************/
+
+    @Test
+    public void MapCreate(){
+        User user = new User();
+        Map<String, Object> map = MapUtil.createMap(user.getClass());
+        System.out.println("map = " + map);
+    }
 }

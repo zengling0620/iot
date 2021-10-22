@@ -27,13 +27,12 @@ public class Pretty {
         String contextPath = env.getProperty("server.servlet.context-path");
         String[] activeProfiles = env.getActiveProfiles();
         String hostAddress = InetAddress.getLocalHost().getHostAddress();
-        StringBuilder builder = new StringBuilder();
-        builder.append(indent).append("Application {} is running! Access URLs:").append(crlf);
-        builder.append(indent).append("Local:").append(indent).append(indent).append("{}://localhost:{}").append(crlf);
-        builder.append(indent).append("External:").append(indent).append("{}://{}:{}").append(crlf);
-        builder.append(indent).append("Context:").append(indent).append("{}").append(crlf);
-        builder.append(indent).append("Profile(s):").append(indent).append("{}");
-        builder.append(lineSeparator);
-        log.info(builder.toString(), appName, protocol, port, protocol, hostAddress, port, contextPath, activeProfiles);
+        String builder = indent + "Application {} is running! Access URLs:" + crlf +
+                indent + "Local:" + indent + indent + "{}://localhost:{}" + crlf +
+                indent + "External:" + indent + "{}://{}:{}" + crlf +
+                indent + "Context:" + indent + "{}" + crlf +
+                indent + "Profile(s):" + indent + "{}" +
+                lineSeparator;
+        log.info(builder, appName, protocol, port, protocol, hostAddress, port, contextPath, activeProfiles);
     }
 }
